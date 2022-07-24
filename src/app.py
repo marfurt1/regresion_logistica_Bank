@@ -32,7 +32,7 @@ def replace_with_frequent(df,col):
     frequent = df[col].value_counts().idxmax()
     print("The most frequent value is:", frequent)
     df[col].replace('unknown', frequent , inplace = True)
-    print("Replacing unknown values with the most frequent value:", frequent)
+    #print("Replacing unknown values with the most frequent value:", frequent)
 
 #Replacing unknown values in categorical features.
 replace_with_frequent(data, "job")
