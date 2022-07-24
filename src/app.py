@@ -43,7 +43,6 @@ replace_with_frequent(data, "housing")
 replace_with_frequent(data, "loan")
 
 #add a new column next to the age column for age groups.
-
 age_groups = pd.cut(data['age'],bins=[10,20,30,40,50,60,70,80,90,100],
                     labels=['10-19','20-29','30-39','40-49','50-59','60-69','70-79','80-89','90-100'])
 
@@ -53,14 +52,12 @@ data.insert(1,'age_group',age_groups)
 #dropping age column
 data.drop('age',axis=1,inplace=True)
 
-## grouping education categories 'basic.9y','basic.6y','basic4y' into 'middle_school'**
-
+# grouping education categories 'basic.9y','basic.6y','basic4y' into 'middle_school'**
 lst=['basic.9y','basic.6y','basic.4y']
 for i in lst:
     data.loc[data['education'] == i, 'education'] = "middle.school"
 
 #remove duplicated  keeping the most recent one.
-
 duplicated_data=data[data.duplicated(keep="last")]
 data=data.drop_duplicates()
 
@@ -70,7 +67,6 @@ def target_to_binary(y):
 target_to_binary(data['y'])
 
 ## Encoding ordinal features**
-
 encoder = LabelEncoder()
 data['age_group'] = encoder.fit_transform(data['age_group'])
 data['education'] = encoder.fit_transform(data['education'])
@@ -86,7 +82,6 @@ day_dict={'thu':5,'mon':2,'wed':4,'tue':3,'fri':6, 'sun':1, 'sat':7}
 data['day_of_week']= data['day_of_week'].map(day_dict)
 
 ##Build a first Logistic Regression model with default hyperparameters.
-
 # split dataset into x,y
 X = data.drop('y',axis=1)
 y = data['y']
@@ -117,7 +112,6 @@ filename = '../models/RegL_model.sav' #use absolute path
 pickle.dump(lg2, open(filename, 'wb'))
 
 #use the model save with new data to predicts prima
-
 # load the model from disk
 loaded_model = pickle.load(open(filename, 'rb'))
 
