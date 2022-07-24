@@ -113,7 +113,7 @@ X_test = scaler.transform(X_test)
 w = {0: 1, 1: 10}
 
 # define model
-lg2 = LogisticRegression(random_state=20, class_weight=w, solver='lbfgs', max_iter=500)
+lg2 = LogisticRegression(random_state=20, class_weight=w, solver='lbfgs', max_iter=300)
 
 # fit it
 lg2.fit(X_train,y_train)
