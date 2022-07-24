@@ -49,6 +49,7 @@ df_transf['age'] = pd.cut(df_transf['age'],bins=[10,20,30,40,50,60,70,80,90,100]
 
 df= df_transf.copy()
 
+
 # split dataset into x,y
 X = df.drop('y',axis=1)
 y = df['y']

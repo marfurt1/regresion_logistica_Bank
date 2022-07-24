@@ -94,6 +94,44 @@ data['month']= data['month'].map(month_dict)
 day_dict={'thu':5,'mon':2,'wed':4,'tue':3,'fri':6, 'sun':1, 'sat':7}
 data['day_of_week']= data['day_of_week'].map(day_dict)
 
+##Build a first Logistic Regression model with default hyperparameters.
+
+# split dataset into x,y
+X = data.drop('y',axis=1)
+y = data['y']
+
+# train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=20)
+
+scaler = MinMaxScaler() #saga solver requires features to be scaled for model conversion
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# define class weights
+w = {0: 1, 1: 10}
+
+# define model
+lg2 = LogisticRegression(random_state=20, class_weight=w, solver='lbfgs', max_iter=500)
+
+# fit it
+lg2.fit(X_train,y_train)
+
+# test
+y_pred = lg2.predict(X_test)
+
+#save the model to file
+filename = 'models/finalized_model.sav' #use absolute path
+pickle.dump(lg2, open(filename, 'wb'))
+
+#use the model save with new data to predicts prima
+
+# load the model from disk
+loaded_model = pickle.load(open(filename, 'rb'))
+
+#Predict using the model 
+#predigo el target y para los valores seteados, selecciono cualquiera para ver
+print('Predicted ] : \n', loaded_model.predict(X_test[13:17]))
+print('Class ] : \n', y_test[13:17])
 
 
 
