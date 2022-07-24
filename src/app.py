@@ -106,8 +106,6 @@ lg2.fit(X_train,y_train)
 y_pred = lg2.predict(X_test)
 
 #save the model to file
-
-
 filename = '../models/RegL_model.sav' #use absolute path
 pickle.dump(lg2, open(filename, 'wb'))
 
