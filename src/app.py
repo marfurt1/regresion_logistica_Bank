@@ -18,6 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import roc_curve
 from sklearn.metrics import RocCurveDisplay
 from sklearn.model_selection import GridSearchCV
+import pickle
 
 #Let's load the data and take a first look to the first rows.
 
