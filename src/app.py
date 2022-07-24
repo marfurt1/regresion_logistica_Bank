@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-%matplotlib inline
+from mat´plotlib.inline
+#%matplotlib inline
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder
 from sklearn import linear_model
