@@ -35,22 +35,11 @@ def replace_with_frequent(df,col):
     print("Replacing unknown values with the most frequent value:", frequent)
 
 #Replacing unknown values in categorical features.
-print('Job:')
 replace_with_frequent(data, "job")
-print('-'*50)
-print('Marital:')
 replace_with_frequent(data, "marital")
-print('-'*50)
-print('Education:')
 replace_with_frequent(data, "education")
-print('-'*50)
-print('Default:')
 replace_with_frequent(data, "default")
-print('-'*50)
-print('Housing:')
 replace_with_frequent(data, "housing")
-print('-'*50)
-print('Loan:')
 replace_with_frequent(data, "loan")
 
 #add a new column next to the age column for age groups.
@@ -122,7 +111,9 @@ lg2.fit(X_train,y_train)
 y_pred = lg2.predict(X_test)
 
 #save the model to file
-filename = 'models/finalized_model.sav' #use absolute path
+
+
+filename = '../models/RegL_model.sav' #use absolute path
 pickle.dump(lg2, open(filename, 'wb'))
 
 #use the model save with new data to predicts prima
